@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iglesia Maranatha | ¡El Señor viene!</title>
+  <meta name="description" content="Iglesia Maranatha: una familia que adora a Dios, estudia Su Palabra y espera la venida de Cristo. Versículo del día, horarios, ministerios y eventos.">
+  <meta property="og:title" content="Iglesia Maranatha">
+  <meta property="og:description" content="Versículo del día, horarios de servicio, ministerios y eventos.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231b2a4e'/><path d='M50 18v64M30 38h40' stroke='%23d4a843' stroke-width='10' stroke-linecap='round'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ===== ENCABEZADO ===== -->
+  <header class="header" id="header">
+    <div class="container nav">
+      <a href="#inicio" class="logo">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 4v32M10 14h20" /></svg>
+        <span>Maranatha</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-menu" id="navMenu">
+        <a href="#inicio">Inicio</a>
+        <a href="#palabra">Palabra del día</a>
+        <a href="#horarios">Horarios</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#ministerios">Ministerios</a>
+        <a href="#eventos">Eventos</a>
+        <a href="#contacto" class="btn btn-small">Visítanos</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="inicio">
+    <div class="hero-light"></div>
+    <div class="container hero-content">
+      <p class="hero-kicker" id="fechaHoy">&nbsp;</p>
+      <h1>Iglesia <span>Maranatha</span></h1>
+      <p class="hero-sub">"¡El Señor viene!" — Una familia que adora, ama y sirve esperando Su regreso.</p>
+      <div class="hero-buttons">
+        <a href="#palabra" class="btn">Versículo de hoy</a>
+        <a href="#horarios" class="btn btn-outline">Nuestros servicios</a>
+      </div>
+      <div class="countdown" id="countdown">
+        <p class="countdown-label">Próximo servicio: <strong id="nextServiceName">—</strong></p>
+        <div class="countdown-grid">
+          <div><span id="cdDias">0</span><small>días</small></div>
+          <div><span id="cdHoras">0</span><small>horas</small></div>
+          <div><span id="cdMin">0</span><small>min</small></div>
+          <div><span id="cdSeg">0</span><small>seg</small></div>
+        </div>
+      </div>
+    </div>
+    <a href="#palabra" class="scroll-down" aria-label="Bajar"><span></span></a>
+  </section>
+
+  <!-- ===== PALABRA DEL DÍA ===== -->
+  <section class="section palabra" id="palabra">
+    <div class="container">
+      <div class="section-title">
+        <span class="tag">Cambia cada día</span>
+        <h2>Palabra del día</h2>
+        <p id="temaDia">Tema del día</p>
+      </div>
+
+      <div class="verse-card reveal">
+        <div class="verse-nav">
+          <button class="icon-btn" id="prevDay" aria-label="Día anterior">&#8249;</button>
+          <span id="verseDate">Hoy</span>
+          <button class="icon-btn" id="nextDay" aria-label="Día siguiente">&#8250;</button>
+        </div>
+        <svg class="quote-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 17c-1.6 0-2.9-1.4-2.9-3.3 0-3.3 2.4-6.2 5.5-7.2l.6 1.2c-1.8.8-3 2.3-3.1 3.8.3-.1.6-.1.9-.1 1.6 0 2.8 1.2 2.8 2.8S9 17 7.2 17zm9.5 0c-1.6 0-2.9-1.4-2.9-3.3 0-3.3 2.4-6.2 5.5-7.2l.6 1.2c-1.8.8-3 2.3-3.1 3.8.3-.1.6-.1.9-.1 1.6 0 2.8 1.2 2.8 2.8S18.5 17 16.7 17z"/></svg>
+        <blockquote id="verseText">Cargando versículo...</blockquote>
+        <cite id="verseRef"></cite>
+        <div class="verse-actions">
+          <button class="btn btn-small" id="copyVerse">Copiar</button>
+          <a class="btn btn-small btn-whatsapp" id="shareWhatsapp" target="_blank" rel="noopener">WhatsApp</a>
+          <button class="btn btn-small btn-outline-dark" id="shareVerse">Compartir</button>
+          <button class="btn btn-small btn-outline-dark" id="todayBtn" hidden>Volver a hoy</button>
+        </div>
+      </div>
+
+      <div class="daily-grid">
+        <article class="daily-box reveal">
+          <h3>Reflexión</h3>
+          <p id="reflexion"></p>
+        </article>
+        <article class="daily-box reveal">
+          <h3>Oración del día</h3>
+          <p id="oracion"></p>
+        </article>
+        <article class="daily-box reveal">
+          <h3>Lectura bíblica</h3>
+          <p id="lectura"></p>
+          <p class="muted" id="lecturaNota"></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HORARIOS ===== -->
+  <section class="section horarios" id="horarios">
+    <div class="container">
+      <div class="section-title light">
+        <span class="tag">Te esperamos</span>
+        <h2>Horarios de servicio</h2>
+        <p>Ven tal como eres. Hay un lugar para ti y tu familia.</p>
+      </div>
+      <div class="schedule-grid" id="scheduleGrid"><!-- generado por JS --></div>
+    </div>
+  </section>
+
+  <!-- ===== NOSOTROS ===== -->
+  <section class="section" id="nosotros">
+    <div class="container about">
+      <div class="about-text reveal">
+        <span class="tag">Quiénes somos</span>
+        <h2>Una iglesia que espera al Rey</h2>
+        <p><strong>Maranatha</strong> es una expresión aramea que significa <em>"El Señor viene"</em> (1 Corintios 16:22). Así vivimos: con la esperanza viva del regreso de Cristo, amando a Dios y a nuestro prójimo.</p>
+        <p>Somos una comunidad cristiana que cree en el poder transformador del evangelio, en la oración y en la enseñanza fiel de la Palabra de Dios.</p>
+        <div class="about-cards">
+          <div><h4>Misión</h4><p>Predicar el evangelio, hacer discípulos y servir a nuestra comunidad con el amor de Cristo.</p></div>
+          <div><h4>Visión</h4><p>Ser una familia de fe que transforma vidas y prepara un pueblo para la venida del Señor.</p></div>
+        </div>
+      </div>
+      <div class="about-visual reveal">
+        <div class="cross-art">
+          <svg viewBox="0 0 200 260" aria-hidden="true">
+            <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3d27a"/><stop offset="1" stop-color="#b8862b"/></linearGradient></defs>
+            <circle cx="100" cy="110" r="90" fill="rgba(212,168,67,.12)"/>
+            <rect x="88" y="20" width="24" height="220" rx="4" fill="url(#g)"/>
+            <rect x="40" y="70" width="120" height="24" rx="4" fill="url(#g)"/>
+          </svg>
+        </div>
+        <ul class="beliefs">
+          <li>Creemos en un solo Dios: Padre, Hijo y Espíritu Santo.</li>
+          <li>Creemos que la Biblia es la Palabra inspirada de Dios.</li>
+          <li>Creemos en la salvación por gracia mediante la fe en Jesucristo.</li>
+          <li>Creemos en la segunda venida de Cristo.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MINISTERIOS ===== -->
+  <section class="section alt" id="ministerios">
+    <div class="container">
+      <div class="section-title">
+        <span class="tag">Sirve con nosotros</span>
+        <h2>Ministerios</h2>
+        <p>Hay un lugar para cada edad y cada don.</p>
+      </div>
+      <div class="cards-grid">
+        <div class="card reveal"><div class="card-icon">&#9835;</div><h3>Alabanza</h3><p>Adoramos a Dios con música y corazones dispuestos.</p></div>
+        <div class="card reveal"><div class="card-icon">&#9733;</div><h3>Niños</h3><p>Enseñamos la Palabra a los más pequeños de forma creativa.</p></div>
+        <div class="card reveal"><div class="card-icon">&#9889;</div><h3>Jóvenes</h3><p>Una generación apasionada por Cristo y Su propósito.</p></div>
+        <div class="card reveal"><div class="card-icon">&#9829;</div><h3>Matrimonios</h3><p>Fortalecemos familias sobre el fundamento de Cristo.</p></div>
+        <div class="card reveal"><div class="card-icon">&#10014;</div><h3>Intercesión</h3><p>Oramos por la iglesia, la nación y tus peticiones.</p></div>
+        <div class="card reveal"><div class="card-icon">&#10070;</div><h3>Evangelismo</h3><p>Llevamos las buenas nuevas a nuestra comunidad.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EVENTOS ===== -->
+  <section class="section" id="eventos">
+    <div class="container">
+      <div class="section-title">
+        <span class="tag">Agenda</span>
+        <h2>Próximos eventos</h2>
+      </div>
+      <div class="events" id="eventsList"><!-- generado por JS --></div>
+    </div>
+  </section>
+
+  <!-- ===== PETICIONES DE ORACIÓN ===== -->
+  <section class="section prayer" id="oracion-form">
+    <div class="container prayer-wrap">
+      <div class="reveal">
+        <span class="tag">No estás solo</span>
+        <h2>¿Podemos orar por ti?</h2>
+        <p>"Echando toda vuestra ansiedad sobre él, porque él tiene cuidado de vosotros." — 1 Pedro 5:7</p>
+        <p>Envíanos tu petición y nuestro equipo de intercesión orará contigo.</p>
+      </div>
+      <form class="prayer-form reveal" id="prayerForm">
+        <input type="text" id="pfNombre" placeholder="Tu nombre (opcional)">
+        <textarea id="pfPeticion" rows="4" placeholder="Escribe tu petición de oración" required></textarea>
+        <button type="submit" class="btn">Enviar petición</button>
+        <p class="form-msg" id="formMsg"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== OFRENDAS ===== -->
+  <section class="section alt" id="ofrendas">
+    <div class="container give">
+      <div class="reveal">
+        <h2>Ofrendas y diezmos</h2>
+        <p>"Cada uno dé como propuso en su corazón: no con tristeza, ni por necesidad, porque Dios ama al dador alegre." — 2 Corintios 9:7</p>
+      </div>
+      <div class="give-box reveal">
+        <p><strong>Banco:</strong> NOMBRE DEL BANCO</p>
+        <p><strong>Cuenta:</strong> 000-000000-0</p>
+        <p><strong>A nombre de:</strong> Iglesia Maranatha</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACTO ===== -->
+  <section class="section" id="contacto">
+    <div class="container contact">
+      <div class="contact-info reveal">
+        <span class="tag">Encuéntranos</span>
+        <h2>Visítanos</h2>
+        <ul>
+          <li><strong>Dirección:</strong> <span>Escribe aquí la dirección de la iglesia</span></li>
+          <li><strong>Teléfono:</strong> <a href="tel:+50200000000">+502 0000-0000</a></li>
+          <li><strong>Correo:</strong> <a href="mailto:contacto@maranatha.org">contacto@maranatha.org</a></li>
+        </ul>
+        <div class="socials">
+          <a href="#" aria-label="Facebook">Facebook</a>
+          <a href="#" aria-label="YouTube">YouTube</a>
+          <a href="#" aria-label="Instagram">Instagram</a>
+        </div>
+      </div>
+      <div class="map reveal">
+        <!-- Cambia "Guatemala" en la URL por la dirección exacta de la iglesia -->
+        <iframe title="Ubicación de la iglesia" loading="lazy"
+          src="https://www.google.com/maps?q=Guatemala&output=embed"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PIE ===== -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-logo">Maranatha</p>
+      <p>"Ciertamente vengo en breve. Amén; sí, ven, Señor Jesús." — Apocalipsis 22:20</p>
+      <p class="muted">&copy; <span id="year"></span> Iglesia Maranatha. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <button class="to-top" id="toTop" aria-label="Volver arriba">&#8593;</button>
+  <div class="toast" id="toast"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
