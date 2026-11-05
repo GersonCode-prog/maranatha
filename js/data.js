@@ -3,7 +3,11 @@
    Edita este archivo para cambiar versículos, horarios y eventos.
    ========================================================= */
 
-/* ---------- VERSÍCULOS + REFLEXIÓN (uno por día, rotan solos) ---------- */
+/* ---------- VERSÍCULOS LOCALES + PENSAMIENTO DEL DÍA ----------
+   - "reflexion" se usa como Pensamiento del día (rota sin repetirse hasta
+     recorrer toda la lista).
+   - "texto" y "cita" son el RESPALDO: solo se muestran si la API no responde
+     (sin internet, API caída, etc.). */
 const VERSICULOS = [
   { texto: "Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree, no se pierda, mas tenga vida eterna.", cita: "Juan 3:16",
     reflexion: "El amor de Dios no es una idea lejana: tiene nombre, Jesús. Hoy recuerda que fuiste amado primero, antes de hacer nada para merecerlo." },
@@ -100,18 +104,53 @@ const ORACIONES = [
   "Dios, gracias por Tu Palabra. Abre mi entendimiento para conocerte más cada día. Amén."
 ];
 
-/* ---------- LECTURA BÍBLICA (un capítulo diario; cicla por libros) ---------- */
-const LECTURAS = [
-  { libro: "Juan", caps: 21 },
-  { libro: "Salmos", caps: 30 },
-  { libro: "Proverbios", caps: 31 },
-  { libro: "Hechos", caps: 28 },
-  { libro: "Romanos", caps: 16 },
-  { libro: "Filipenses", caps: 4 },
-  { libro: "Santiago", caps: 5 },
-  { libro: "Marcos", caps: 16 },
-  { libro: "Efesios", caps: 6 },
-  { libro: "1 Tesalonicenses", caps: 5 }
+/* ---------- API BÍBLICA (bolls.life) ----------
+   El versículo del día se toma de estos libros. Cada día se elige un
+   capítulo distinto y NO se repite ninguno hasta recorrerlos todos
+   (460 capítulos = más de 1 año). En la siguiente vuelta cambia el orden
+   y el versículo elegido dentro de cada capítulo.
+   id = número del libro en la Biblia (Génesis = 1 ... Apocalipsis = 66) */
+const LIBROS_API = [
+  { id: 19, nombre: "Salmos", caps: 150 },
+  { id: 20, nombre: "Proverbios", caps: 31 },
+  { id: 23, nombre: "Isaías", caps: 66 },
+  { id: 40, nombre: "Mateo", caps: 28 },
+  { id: 41, nombre: "Marcos", caps: 16 },
+  { id: 42, nombre: "Lucas", caps: 24 },
+  { id: 43, nombre: "Juan", caps: 21 },
+  { id: 45, nombre: "Romanos", caps: 16 },
+  { id: 46, nombre: "1 Corintios", caps: 16 },
+  { id: 47, nombre: "2 Corintios", caps: 13 },
+  { id: 48, nombre: "Gálatas", caps: 6 },
+  { id: 49, nombre: "Efesios", caps: 6 },
+  { id: 50, nombre: "Filipenses", caps: 4 },
+  { id: 51, nombre: "Colosenses", caps: 4 },
+  { id: 52, nombre: "1 Tesalonicenses", caps: 5 },
+  { id: 55, nombre: "2 Timoteo", caps: 4 },
+  { id: 58, nombre: "Hebreos", caps: 13 },
+  { id: 59, nombre: "Santiago", caps: 5 },
+  { id: 60, nombre: "1 Pedro", caps: 5 },
+  { id: 62, nombre: "1 Juan", caps: 5 },
+  { id: 66, nombre: "Apocalipsis", caps: 22 }
+];
+
+/* ---------- BIBLIA COMPLETA (sección "Biblia") ----------
+   [nombre, número de capítulos]. El número del libro es su posición (1 a 66). */
+const BIBLIA = [
+  ["Génesis", 50], ["Éxodo", 40], ["Levítico", 27], ["Números", 36], ["Deuteronomio", 34],
+  ["Josué", 24], ["Jueces", 21], ["Rut", 4], ["1 Samuel", 31], ["2 Samuel", 24],
+  ["1 Reyes", 22], ["2 Reyes", 25], ["1 Crónicas", 29], ["2 Crónicas", 36], ["Esdras", 10],
+  ["Nehemías", 13], ["Ester", 10], ["Job", 42], ["Salmos", 150], ["Proverbios", 31],
+  ["Eclesiastés", 12], ["Cantares", 8], ["Isaías", 66], ["Jeremías", 52], ["Lamentaciones", 5],
+  ["Ezequiel", 48], ["Daniel", 12], ["Oseas", 14], ["Joel", 3], ["Amós", 9],
+  ["Abdías", 1], ["Jonás", 4], ["Miqueas", 7], ["Nahúm", 3], ["Habacuc", 3],
+  ["Sofonías", 3], ["Hageo", 2], ["Zacarías", 14], ["Malaquías", 4],
+  ["Mateo", 28], ["Marcos", 16], ["Lucas", 24], ["Juan", 21], ["Hechos", 28],
+  ["Romanos", 16], ["1 Corintios", 16], ["2 Corintios", 13], ["Gálatas", 6], ["Efesios", 6],
+  ["Filipenses", 4], ["Colosenses", 4], ["1 Tesalonicenses", 5], ["2 Tesalonicenses", 3], ["1 Timoteo", 6],
+  ["2 Timoteo", 4], ["Tito", 3], ["Filemón", 1], ["Hebreos", 13], ["Santiago", 5],
+  ["1 Pedro", 5], ["2 Pedro", 3], ["1 Juan", 5], ["2 Juan", 1], ["3 Juan", 1],
+  ["Judas", 1], ["Apocalipsis", 22]
 ];
 
 /* ---------- TEMA SEGÚN EL DÍA DE LA SEMANA (0 = domingo) ---------- */
@@ -149,5 +188,8 @@ const CONFIG = {
   // Correo donde llegan las peticiones de oración
   correoOracion: "contacto@maranatha.org",
   // URL del sitio (para compartir). Ej: "https://tuusuario.github.io/maranatha/"
-  urlSitio: ""
+  urlSitio: "",
+  // Servidor de la API bíblica y versión por defecto
+  apiBiblia: "https://bolls.life",
+  traduccionDefecto: "RV1960"
 };
