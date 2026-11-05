@@ -19,12 +19,6 @@ js/data.js   <- AQUÍ editas versículos, horarios, eventos y correo
 js/main.js   <- lógica (no necesitas tocarlo)
 ```
 
-## Publicar en GitHub Pages
-1. Crea un repositorio nuevo en GitHub (por ejemplo `maranatha`), público.
-2. Sube **todos** los archivos manteniendo las carpetas (`Add file > Upload files` y arrastra el contenido de la carpeta).
-3. Ve a **Settings > Pages**.
-4. En *Source* elige **Deploy from a branch**, rama **main**, carpeta **/ (root)** y guarda.
-5. En 1–2 minutos tu sitio estará en `https://TU-USUARIO.github.io/maranatha/`.
 
 ## Personalizar
 - **Dirección, teléfono, correo, redes, banco**: en `index.html` (busca los textos de ejemplo).
